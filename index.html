@@ -21,34 +21,35 @@
     <!-- Ventana Iniciar Sesión -->
     <div id="pantalla-login" class="overlay"><!-- Esto lo agregué para JS-->
         <div class="modal-content">
-        <h2>Iniciar Sesión</h2>
-        <form onsubmit="iniciarSesion(event)">
-            <input type="email" id="login-correo" placeholder="correo@electronico" class="form-control mb-3" required>
-            <input type="password" id="login-pass" placeholder="Contraseña" class="form-control mb-3" required>
-            <button type="submit" class="uno btn btn-success w-100 mb-3">Entrar</button>
-            <button type="button" class="btn btn-secondary w-100" onclick="volverInicio()">Volver</button>
-        </form>
+            <h2>Iniciar Sesión</h2>
+            <form onsubmit="iniciarSesion(event)">
+                <input type="email" id="login-correo" placeholder="correo@electronico" class="form-control mb-3" required>
+                <input type="password" id="login-pass" placeholder="Contraseña" class="form-control mb-3" required>
+                <button type="submit" class="uno btn btn-success w-100 mb-3">Entrar</button>
+                <button type="button" class="btn btn-secondary w-100" onclick="volverInicio()">Volver</button>
+            </form>
+        </div>
     </div>
-</div>
 
     <!-- Ventana Registro -->
     <div id="pantalla-registro" style="display:none;" class="overlay"><!-- Esto lo agregué para JS-->
         <div class="modal-content">
-        <h2>Registrarse</h2>
-        <form onsubmit="registrarUsuario(event)">
-            <input type="text" id="reg-nombre" placeholder="Nombre completo" class="form-control mb-3" required>
-            <input type="email" id="reg-correo" placeholder="correo@electronico" class="form-control mb-3" required>
-            <input type="password" id="reg-pass" placeholder="Contraseña" class="form-control mb-3" required>
-            <button type="submit" class="uno btn btn-success w-100 mb-3">Registrarse</button>
-            <button type="button" class="btn btn-secondary w-100" onclick="volverInicio()">Volver</button>
-        </form>
+            <h2>Registrarse</h2>
+            <form onsubmit="registrarUsuario(event)">
+                <input type="text" id="reg-nombre" placeholder="Nombre completo" class="form-control mb-3" required>
+                <input type="email" id="reg-correo" placeholder="correo@electronico" class="form-control mb-3" required>
+                <input type="password" id="reg-pass" placeholder="Contraseña" class="form-control mb-3" required>
+                <button type="submit" class="uno btn btn-success w-100 mb-3">Registrarse</button>
+                <button type="button" class="btn btn-secondary w-100" onclick="volverInicio()">Volver</button>
+            </form>
+        </div>
     </div>
-</div>
 
     <!-- Dashboard Principal -->
     <section id="pantalla-dashboard" style="display:none;" class="container py-4"><!-- Esto lo agregué para JS-->
         <nav class="navbar navbar-expand-lg navbar-light bg-success rounded mb-4 px-3">
             <h3 class="navbar-brand text-white fw-bold">Mi Despensa 🧺</h3><!-- Esto lo cambié -->
+            <h4 class="text-white ms-3" id="nombreUsuario"></h4><!-- Esto lo agregué para mostrar el nombre del usuario-->
             <div class="ms-auto">
                 <button class="dos btn btn-light me-2" onclick="cambiarTema()">🌙 / ☀️</button>
                 <button class="cuatro btn btn-danger" onclick="cerrarSesion()">Cerrar sesión</button>
@@ -59,6 +60,7 @@
             <h2 class="text-success">Dashboard de Alimentos</h2>
             <div>
                 <button class="uno btn btn-success me-2" onclick="mostrarFormularioAlimento()">Registrar alimento</button>
+                <button class="btn btn-outline-success" onclick="mostrarDirecciones()">📖 Libreta</button>
             </div>
         </div>
 
@@ -66,6 +68,21 @@
             <li class="list-group-item">No hay alimentos registrados.</li><!-- Esto lo cambié para JS los alimentos predeterminados me causaban conflictos a la hora de editar-->
         </ul>
     </section>
+
+    <!-- Pantalla Libreta de Direcciones -->
+    <section id="pantalla-direcciones" style="display:none;" class="container py-4">
+        <h2 class="text-success mb-3">📖 Libreta de Direcciones</h2>
+        <form id="form-direccion" onsubmit="guardarDireccion(event)" class="mb-4">
+            <input type="text" id="dir-nombre" class="form-control mb-2" placeholder="Nombre completo" required>
+            <input type="text" id="dir-telefono" class="form-control mb-2" placeholder="Teléfono" required>
+            <input type="text" id="dir-direccion" class="form-control mb-2" placeholder="Dirección" required>
+            <input type="email" id="dir-correo" class="form-control mb-2" placeholder="Correo electrónico" required>
+            <button class="btn btn-success w-100">Guardar dirección</button>
+        </form>
+        <ul id="listaDirecciones" class="list-group"></ul>
+        <button class="btn btn-secondary mt-3" onclick="volverDashboard()">Volver</button>
+    </section>
+
 
     <!-- Ventana Registrar Alimento --><!-- Esto lo agregué para JS-->
     <div id="pantalla-alimento" style="display:none;" class="overlay">
@@ -94,6 +111,10 @@
         </div>
     </div>
 
+    <!-- Contador de visitas -->
+    <div class="text-center text-muted mt-4">
+        <small id="contadorVisitas"></small>
+    </div>
 
     <script src="script.js"></script>
 </body>

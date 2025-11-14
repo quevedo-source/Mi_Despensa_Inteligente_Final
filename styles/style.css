@@ -22,3 +22,8 @@ body.bg-dark .modal-content {
     background-color: #2c2c2c;
     color: white;
 }
+
+#info-nutricional {
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
